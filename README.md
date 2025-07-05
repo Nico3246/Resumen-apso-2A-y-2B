@@ -71,7 +71,7 @@ int main() {
 **Crear FIFO desde terminal:**
 
 ```bash
-mkfifo myfifo
+mkfifo (myfifo,0666)
 ```
 
 **Escribir (proceso A):**
