@@ -134,7 +134,7 @@ int main() {
 
 ---
 
-### 📬 `Colas de mensajes (System V)`
+### `Colas de mensajes (System V)`
 
 **Estructura del mensaje:**
 
