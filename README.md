@@ -131,6 +131,21 @@ int main() {
     return 0;
 }
 ```
+### Cómo enviar señales
+
+Puedes enviar señales entre procesos usando la función `kill()` desde C o el comando `kill` desde terminal.
+
+#### Enviar señal desde C:
+
+```c
+#include <signal.h>
+#include <unistd.h>
+
+int main() {
+    pid_t pid = /* PID del proceso destino */;
+    kill(pid, SIGUSR1);  // Envia SIGUSR1 al proceso destino
+    return 0;
+}
 
 ---
 
@@ -185,3 +200,30 @@ msgctl(msqid, IPC_RMID, NULL);
 | `pthread`   | Mismo proceso            | Por variables              | Sí                 | Paralelismo eficiente con bajo overhead     |
 | `signal()`  | No                       | No                         | N/A                | Alertas o control de flujo entre procesos   |
 | `msgqueue`  | No                       | Sí                         | No                 | Comunicación asincrónica y estructurada     |
+
+
+---
+
+#### Enviar señal desde terminal:
+
+```bash
+kill -SIGUSR1 <PID>
+```
+
+Puedes encontrar el PID con comandos como:
+
+```bash
+ps aux | grep nombre_programa
+```
+
+#### Señales comunes:
+
+| Señal     | Código      | Descripción                         |
+|-----------|-------------|-------------------------------------|
+| `SIGINT`  | `2`         | Interrupción (Ctrl + C)             |
+| `SIGTERM` | `15`        | Terminación programada              |
+| `SIGKILL` | `9`         | Finalización forzada (no bloqueable)|
+| `SIGUSR1` | `10` / `30` | Definida por el usuario             |
+| `SIGHUP`  | `1`         | Reinicio del proceso o conexión     |
+
+---
